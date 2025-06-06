@@ -1,191 +1,600 @@
-*{
-  margin: 0;
-  padding: 0;
+/* Paleta de Cores Hello Kitty */
+:root {
+    --hk-pink: #FFC0CB; /* Rosa bebê */
+    --hk-red: #FF6961; /* Vermelho do laço */
+    --hk-white: #FFFFFF; /* Branco */
+    --hk-light-gray: #F0F0F0; /* Cinza muito claro */
+    --hk-dark-gray: #4A4A4A; /* Texto */
+    --hk-yellow: #FFFADD; /* Amarelo muito claro / creme */
+    --hk-blue: #ADD8E6; /* Azul bebê */
+    --hk-shadow: rgba(0, 0, 0, 0.15); /* Sombra suave */
+    --hk-border: rgba(255, 255, 255, 0.7); /* Borda para elementos */
 }
 
-a{
-  color:#3B3045;
-  text-decoration: none;
-  opacity: 1;
-  transition: 0.3s;
+/* Reset básico e Box Sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Essencial para layout responsivo */
+    text-decoration: none;
+    outline: none;
+    border: none;
 }
 
-a:hover{
-  opacity: 0.7;
+html {
+    font-size: 62.5%; /* 1rem = 10px, facilita o cálculo */
+    scroll-behavior: smooth; /* Para navegação suave */
 }
 
-.logo{
-  font-size: 24px;
-  text-transform: uppercase;
-  letter-spacing: 4px;
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--hk-yellow); /* Fundo suave */
+    color: var(--hk-dark-gray); /* Cor de texto padrão */
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+   
+    background-image: url('assets/hk-background-pattern.jpg'); 
+    background-size: cover; 
+    background-attachment: fixed;
+    background-position: center;
 }
 
-nav{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: system-ui,system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: #c9aef5;
-  opacity: 0.98;
-  height: 8vh;
-  padding: 0 2rem;
+/* Ajuste o main para não interferir nas sections */
+main {
+    /* Main não será usado diretamente, as sections terão seus próprios estilos */
+    display: none; /* Ou apenas remova a tag <main> do HTML */
 }
 
-main{
-  background: url("bg.jpg") no-repeat center center;
-  background-size: cover;
-  opacity: 1;
-  height: 92vh;
+/* Header */
+header {
+    width: 100%;
+    height: 8vh;
+    background: var(--hk-pink); /* Fundo rosa */
+    box-shadow: 0 5px 15px var(--hk-shadow);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex; /* Para centralizar o nav */
+    justify-content: center; /* Centraliza o nav */
+    align-items: center;
 }
 
-.nav-list{
-  list-style:none;
-  display: flex;
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ocupa a largura total do header */
+    max-width: 1200px; /* Limita a largura máxima do conteúdo do nav */
+    padding: 0 2rem;
+    height: 100%;
 }
 
-.nav-list li{
-  letter-spacing: 2px;
-  margin: 28px;
-  font-size: 16px;
+.logo {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem; /* Ajustado para rem */
+    color: var(--hk-white);
+    font-weight: 540;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: 2px solid var(--hk-red); /* Borda vermelha do laço */
+    padding: 0.8rem 1.5rem; /* Ajustado padding */
+    background-color: var(--hk-light-gray);
+    border-radius: 25px; /* Mais arredondado */
+    box-shadow: 0 0 10px var(--hk-shadow);
+    display: flex;
+    align-items: center;
 }
 
-.menu{
-  display: none;
-  cursor: pointer;
+.logo img {
+    margin-right: 10px; /* Espaço entre a imagem e o texto HK */
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Efeito suave */
+    background-color: var(--hk-white);
+}
+
+/* Nav List (Menu) */
+.nav-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    letter-spacing: 1px; /* Ajustado letter-spacing */
+    margin: 0 1.5rem; /* Margem entre os itens */
+    font-size: 1.6rem; /* Ajustado font-size */
+}
+
+.nav-list li a {
+    color: var(--hk-white);
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Quicksand', sans-serif;
+    transition: 0.3s ease;
+    padding: 0.8rem 1.5rem; /* Padding para a área de clique */
+    border-radius: 20px;
+    position: relative; /* Para o efeito de linha */
+    overflow: hidden; /* Para o efeito de preenchimento */
+}
+
+.nav-list li a:hover,
+.nav-list li a.active {
+    color: var(--hk-red); /* Cor do texto ao passar o mouse/ativo */
+    background-color: var(--hk-white); /* Fundo branco no hover/ativo */
+    box-shadow: 0 0 10px var(--hk-shadow);
+    transform: translateY(-2px); /* Pequeno efeito de levantamento */
+}
+
+/* Efeito de linha no hover/active para os links da nav */
+.nav-list li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: var(--hk-red);
+    left: 50%; /* Começa no meio */
+    transform: translateX(-50%); /* Centraliza */
+    bottom: 5px;
+    transition: width 0.3s ease;
+    border-radius: 5px;
+}
+
+.nav-list li a:hover::after,
+.nav-list li a.active::after {
+    width: calc(100% - 30px); /* Ajusta para ser um pouco menor que o padding */
+}
+
+
+/* Hamburger Menu */
+.menu {
+    display: none; /* Esconde por padrão */
+    cursor: pointer;
 }
 
 .menu div {
-  width: 32px;
-  height: 2px;
-  background: #3B3045;
-  margin: 8px;
-  transition: 0.3s;
+    width: 3.2rem; /* Ajustado para rem */
+    height: 0.3rem; /* Ajustado para rem */
+    background: var(--hk-white);
+    margin: 0.8rem; /* Ajustado para rem */
+    transition: 0.3s ease;
 }
 
-@media (max-width:3000px){
-  body{
-    overflow-x: hidden;
-  }
-  .nav-list{
-    position: absolute;
-    top: 8vh;
-    right: 0;
-    width: 100%;
-    background: #fccbd9;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in;
-    opacity: 1;
-  }
-  .nav-list li{
-    margin-left: 0;
-    opacity: 0;
-  }
-  .menu{
-    display: block;
-  }
-}
-
-.nav-list.active{
-  transform: translateX(0);
-}
-
-@keyframes navLinkFade {
-  from{
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to{
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+/* Animação do Hamburger Menu */
 .menu.active .line1 {
-  transform: rotate(-45deg) translate(-8px, 8px);
-
+    transform: rotate(-45deg) translate(-0.8rem, 0.8rem);
 }
 .menu.active .line2 {
-  opacity: 0;
+    opacity: 0;
 }
 .menu.active .line3 {
-  transform: rotate(45deg) translate(-5px, -7px);
+    transform: rotate(45deg) translate(-0.5rem, -0.7rem);
 }
 
+/* Seções Gerais */
+section {
+    padding: 8rem 0; /* Ajustado para rem */
+    min-height: calc(100vh - 8vh); /* Ajusta para altura do header */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente */
+    border-radius: 20px; /* Bordas bem arredondadas */
+    margin: 3rem auto; /* Margem e centralização */
+    max-width: 90%;
+    box-shadow: 0 10px 30px var(--hk-shadow);
+    position: relative;
+    z-index: 1; /* Garante que as seções fiquem acima do background */
+    border: 2px dashed var(--hk-pink); /* Borda tracejada divertida */
+}
 
-*{
-  margin: 0;
-  padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    border: none;
+h1, h2, h3 {
+    font-family: 'Pacifico', cursive; /* Títulos com fonte divertida */
+    color: var(--hk-red);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 6rem; /* Ajustado para rem */
+    margin-bottom: 2rem;
+    line-height: 1.1;
+}
+
+h1 span {
+    color: var(--hk-pink); /* Cor de destaque para parte do título */
+}
+
+h2 {
+    font-size: 4.5rem; /* Ajustado para rem */
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+h2::after {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><text y="15" font-family="Arial" font-size="20" fill="%23FF6961"></text></svg>'); /* Laço da Hello Kitty */
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: -15px; /* Ajuste a posição do laço */
+    text-align: center;
+    font-size: 1.2em;
+    color: var(--hk-red);
+    opacity: 0.8;
+}
+
+p {
+    font-size: 1.8rem; /* Ajustado para rem */
+    color: var(--hk-dark-gray);
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+}
+
+/* Hero Section */
+.hero {
+    min-height: calc(100vh - 8vh);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin-top: 10vh; /* Ajuste para não ficar colado no header */
+}
+
+.hero-content {
+    flex: 1;
+    min-width: 30rem;
+    max-width: 60rem;
+    padding: 2rem;
+}
+
+.hero-content h1 span {
+    color: var(--hk-red);
+}
+
+.social-icons {
+    margin-top: 2rem;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 6rem;
+    height: 6rem;
+    margin: 0 1.5rem;
+    border-radius: 50%;
+    background-color: var(--hk-pink);
+    color: var(--hk-white);
+    font-size: 3rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.5rem 1.5rem var(--hk-shadow);
+    border: 2px solid var(--hk-red);
+}
+
+.social-icons a:hover {
+    transform: translateY(-0.8rem) scale(1.1);
+    box-shadow: 0 1rem 2.5rem var(--hk-shadow);
+    background-color: var(--hk-blue);
+}
+
+.hero-img img {
+    max-width: 35rem;
+    height: auto;
+    border-radius: 50%;
+    border: 0.8rem solid var(--hk-red);
+    box-shadow: 0 1rem 2.5rem var(--hk-shadow);
+    transition: transform 0.3s ease;
+    object-fit: cover; /* Garante que a imagem se ajuste ao círculo */
+}
+
+.hero-img img:hover {
+    transform: scale(1.05) rotate(5deg);
+}
+
+/* Portfolio Section (Mundo Hello Kitty) */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr)); /* Ajustado para rem */
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.portfolio-item {
+    background-color: var(--hk-white);
+    border-radius: 1.5rem; /* Ajustado para rem */
+    box-shadow: 0 0.8rem 2rem var(--hk-shadow); /* Ajustado para rem */
+    padding: 2.5rem; /* Ajustado para rem */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px dashed var(--hk-blue);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-1rem) scale(1.02); /* Ajustado para rem */
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.2); /* Ajustado para rem */
+}
+
+.portfolio-item img {
+    max-width: 100%;
+    height: 20rem; /* Altura fixa para consistência */
+    object-fit: cover; /* Corta a imagem para preencher o espaço */
+    border-radius: 1rem; /* Ajustado para rem */
+    margin-bottom: 2rem;
+    border: 0.3rem solid var(--hk-pink);
+}
+
+.portfolio-item h3 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.2rem; /* Ajustado para rem */
+    color: var(--hk-red);
+    margin-bottom: 1rem;
+}
+
+.portfolio-item p {
+    color: var(--hk-dark-gray);
+    font-size: 1.6rem; /* Ajustado para rem */
+    margin-bottom: 2rem;
+}
+
+.portfolio-item a {
+    display: inline-block;
+    background-color: var(--hk-blue);
+    color: var(--hk-white);
+    padding: 1.2rem 2.5rem; /* Ajustado para rem */
+    border-radius: 0.8rem; /* Ajustado para rem */
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.portfolio-item a:hover {
+    background-color: var(--hk-red);
+    transform: translateY(-0.3rem); /* Ajustado para rem */
+}
+
+/* About Section (Sobre a Hello Kitty) */
+.about-section {
+    background-color: rgba(255, 240, 245, 0.9); /* Rosa claro semi-transparente */
+}
+
+.about-section .hk-facts ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem; /* Ajustado para rem */
+    margin-top: 2rem;
+}
+
+.about-section .hk-facts ul li {
+    background-color: var(--hk-white);
+    padding: 1rem 2rem; /* Ajustado para rem */
+    border-radius: 1rem; /* Ajustado para rem */
+    box-shadow: 0 0.4rem 1rem var(--hk-shadow); /* Ajustado para rem */
+    color: var(--hk-red);
+    font-weight: 600;
+    font-size: 1.5rem; /* Ajustado para rem */
+    border: 2px dashed var(--hk-pink);
+}
+
+/* Contact Section */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 50rem; /* Ajustado para rem */
+    margin: 4rem auto 0 auto;
+    padding: 3rem; /* Ajustado para rem */
+    background-color: var(--hk-white);
+    border-radius: 1.5rem; /* Ajustado para rem */
+    box-shadow: 0 0.8rem 2rem var(--hk-shadow); /* Ajustado para rem */
+    border: 2px solid var(--hk-blue);
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 1.5rem; /* Ajustado para rem */
+    margin-bottom: 2rem;
+    border: 1px solid var(--hk-blue);
+    border-radius: 0.8rem; /* Ajustado para rem */
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.6rem; /* Ajustado para rem */
+    color: var(--hk-dark-gray);
+    background-color: var(--hk-light-gray); /* Fundo dos campos */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--hk-red);
+    box-shadow: 0 0 0 0.3rem rgba(255, 105, 97, 0.3); /* Ajustado para rem */
     outline: none;
-    font-family: 'Poppins', sans-serif;
 }
 
-html{
-  font-size: 62.5%;
-
-}
-body{
-  height: 100vh;
-  overflow-x: hidden;
-  background:#DAADEB;
-  color: white;
-  width: 100%;
-}
-
-header{
- 
-  width: 100%;
-  height: 8vh;
-  display: aflex;
-  justify-content: space-around;
-  align-items: right;
-  top: 0;
-  left: 0;
-  position: fixed;
-  filter: drop-shadow(10px);
-
+.contact-form button {
+    background-color: var(--hk-red);
+    color: var(--hk-white);
+    padding: 1.5rem 3rem; /* Ajustado para rem */
+    border: none;
+    border-radius: 0.8rem; /* Ajustado para rem */
+    font-size: 1.8rem; /* Ajustado para rem */
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 0.5rem 1.5rem var(--hk-shadow); /* Ajustado para rem */
 }
 
-.logo{
-font-size: 3.5rem;
-color: #5a4157;
-font-weight: 540;
-font-family: 'verdana', sans-serif;
-cursor: pointer;
-transition: 0.5s ease;
-border: 1px solid #5a4157;
-padding: 1rem 2rem;
-background-color: #fccbe2;
-border-radius: 30px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-
+.contact-form button:hover {
+    background-color: var(--hk-blue);
+    transform: translateY(-0.3rem); /* Ajustado para rem */
 }
 
-.logo:hover{
-  transform: scale(1.1);
+/* Responsividade */
+@media (max-width: 768px) {
+    nav {
+        padding: 0 1.5rem; /* Ajustado para rem */
+    }
+
+    .logo {
+        font-size: 2.5rem; /* Ajustado para rem */
+    }
+
+    .menu {
+        display: block; /* Mostra o menu hamburger */
+    }
+
+    .nav-list {
+        position: fixed; /* Mudar para fixed para menu mobile */
+        top: 8vh;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 8vh); /* Ocupa o restante da tela */
+        background: var(--hk-pink);
+        flex-direction: column; /* Itens empilhados */
+        justify-content: flex-start; /* Alinha no topo */
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in;
+        opacity: 1;
+        padding-top: 2rem; /* Espaçamento no topo */
+    }
+
+    .nav-list.active {
+        transform: translateX(0);
+    }
+
+    .nav-list li {
+        margin: 1.5rem 0; /* Margem vertical */
+        opacity: 0; /* Começa invisível para animação */
+        width: 100%; /* Ocupa a largura total */
+        text-align: center;
+    }
+    .nav-list li a {
+        display: block; /* Para que o padding funcione em toda a área */
+        padding: 1.5rem 0;
+    }
+    .nav-list li a::after {
+        bottom: 0.5rem; /* Ajusta a posição da linha */
+    }
+
+
+    /* Animação para os itens do menu mobile */
+    .nav-list.active li {
+        opacity: 1;
+        animation: navLinkFade 0.5s ease forwards var(--delay);
+    }
+
+    @keyframes navLinkFade {
+        from {
+            opacity: 0;
+            transform: translateX(5rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    section {
+        padding: 5rem 1.5rem; /* Ajustado para rem */
+        min-height: auto; /* Permite que a altura se ajuste ao conteúdo */
+        margin: 2rem auto;
+    }
+
+    h1 {
+        font-size: 4rem; /* Ajustado para rem */
+    }
+
+    h2 {
+        font-size: 3.5rem; /* Ajustado para rem */
+    }
+
+    p {
+        font-size: 1.6rem; /* Ajustado para rem */
+    }
+
+    .hero {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem; /* Ajustado para rem */
+    }
+
+    .hero-content p {
+        font-size: 1.2rem; /* Ajustado para rem */
+    }
+
+    .hero-img img {
+        max-width: 25rem; /* Ajustado para rem */
+    }
+
+    .social-icons a {
+        width: 5rem;
+        height: 5rem;
+        font-size: 2.5rem;
+        margin: 0 1rem;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Uma coluna em mobile */
+    }
+
+    .portfolio-item {
+        padding: 2rem;
+    }
+
+    .contact-form {
+        max-width: 90%;
+        padding: 2.5rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+        font-size: 1.5rem; /* Ajustado para rem */
+    }
 }
 
-nav a{
-font-size: 1.8rem;
-font-weight: 549;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-transition: 0.3s ease;
-
-  
-}
-
-nav a:hover,
-nav a.active{
-  color: #5a4157;
-  border: 1px solid #5a4157;
-  padding: 1rem 10rem;
-  opacity: 0.8;
-  border-radius: 30px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  background-color: #fccbe2;
-
+@media (max-width: 480px) {
+    .logo {
+        font-size: 2rem;
+    }
+    h1 {
+        font-size: 3rem !important;
+    }
+    h2 {
+        font-size: 3rem;
+    }
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    .social-icons a {
+        width: 4.5rem;
+        height: 4.5rem;
+        font-size: 2.2rem;
+        margin: 0 0.8rem;
+    }
+    .portfolio-item h3 {
+        font-size: 1.8rem;
+    }
+    .portfolio-item p {
+        font-size: 1.4rem;
+    }
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+        font-size: 1.4rem;
+    }
 }
